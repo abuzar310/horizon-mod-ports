@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/xray_s
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "b99dc490dd58344eda2e811c5aa1860f0640658df56b1d7c9faa250e3b512d1170ca9c3425094e51c2b526cb64809351acc6cbc7c3d929c11e406a32feb76be2"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

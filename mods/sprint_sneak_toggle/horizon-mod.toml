@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/sprint
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "3a0e625cabc53d612960cbeecc90fdf46d0cd92a8604d3a6fd493ce099345c74c92b80ffa695938b7bc42624e6ed5fa84a28e32048806ad4818bdc56dbd1d954"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"
