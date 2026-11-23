@@ -1,0 +1,16 @@
+{
+  "speedometer.setting.shown": "Shown",
+  "speedometer.setting.shown.tooltip": "Whether your speed shows in its corner. It gives way to the debug screen (F3).",
+  "speedometer.setting.corner": "Corner",
+  "speedometer.setting.corner.tooltip": "Where the speed shows.",
+  "speedometer.corner.top_left": "Top left",
+  "speedometer.corner.top_right": "Top right",
+  "speedometer.corner.bottom_left": "Bottom left",
+  "speedometer.corner.bottom_right": "Bottom right",
+  "speedometer.setting.unit": "Unit",
+  "speedometer.setting.unit.tooltip": "Blocks per second (a block is a metre) or kilometres per hour.",
+  "speedometer.unit.blocks": "Blocks per second",
+  "speedometer.unit.kmh": "km/h",
+  "speedometer.setting.vertical": "Count climbing and falling",
+  "speedometer.setting.vertical.tooltip": "Off: only your speed across the ground. On: height changes count too, as in a fall or a dive with elytra."
+}

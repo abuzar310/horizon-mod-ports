@@ -1,0 +1,10 @@
+id = "speedometer"
+name = "Speedometer"
+version = "1.0.0"
+description = "How fast you move, in a corner of the screen: blocks per second or km/h over the last second, walking, riding, boating or flying."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/speedometer"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

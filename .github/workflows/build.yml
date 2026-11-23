@@ -40,6 +40,8 @@ jobs:
         with:
           path: ~/horizon-tools
           key: horizon-mod-tools-v1-${{ steps.pins.outputs.key }}
+          # A new pin keeps the tools already built for the others.
+          restore-keys: horizon-mod-tools-v1-
 
       - name: Install cargo-horizon-mod for each pin
         if: steps.tools.outputs.cache-hit != 'true'
@@ -65,8 +67,9 @@ jobs:
 
       - name: Build, check and test
         run: |
-          set -euo pipefail
+          set -uo pipefail
           mkdir -p out
+          failed=()
           for dir in ci/*/ mods/*/; do
             dir=${dir%/}
             [ -f "$dir/horizon-mod.toml" ] || continue
@@ -74,14 +77,21 @@ jobs:
             pin=$(sed -nE 's/^sdk = "([0-9a-f]{40})"$/\1/p' "$dir/Cargo.toml")
             echo "::group::$dir ($id, SDK $pin)"
             (
+              set -e
               cd "$dir"
               export PATH="$HOME/horizon-tools/$pin/bin:$PATH"
               cargo horizon-mod build --wasm
               cargo horizon-mod check "target/horizon-mod/$id.hmod"
               toolchain=$(sed -nE 's/^toolchain = "([^ "]+)[ "].*$/\1/p' horizon-mod.toml)
               cargo "+$toolchain" test
-            )
+            ) 2>&1 | tee "out/$id.log"
+            status=${PIPESTATUS[0]}
             echo "::endgroup::"
+            if [ "$status" -ne 0 ]; then
+              echo "::error title=$id::build, check or tests failed (out/$id.log)"
+              failed+=("$id")
+              continue
+            fi
             cp "$dir/target/horizon-mod/$id.hmod" "out/$id.hmod"
             cp "$dir/horizon-mod.toml" "out/$id.horizon-mod.toml"
             {
@@ -93,15 +103,25 @@ jobs:
             } >> "$GITHUB_STEP_SUMMARY"
             if ! git diff --quiet -- "$dir/horizon-mod.toml"; then
               git diff -- "$dir/horizon-mod.toml"
-              if [[ "$GITHUB_REF" == refs/tags/* || "$dir" == ci/* ]]; then
-                echo "::error title=$id::the build gave another [wasm] table than the committed one"
-                exit 1
+              if [[ "$GITHUB_REF" == refs/tags/* && "$dir" == mods/* ]]; then
+                echo "::error title=$id::a release must build to the [wasm] table committed in its horizon-mod.toml"
+                failed+=("$id")
+              elif [[ "$dir" == ci/* ]]; then
+                # Another machine's build (paths, tool build) need not match the published bytes:
+                # the check is that the official source builds and passes the checker here.
+                echo "::notice title=$id::built and checked; its [wasm] hash differs from the published build's"
+              else
+                echo "::warning title=$id::the build wrote a new [wasm] table: commit out/$id.horizon-mod.toml before tagging"
               fi
-              echo "::warning title=$id::the build wrote a new [wasm] table: commit out/$id.horizon-mod.toml before tagging"
             fi
           done
+          if [ ${#failed[@]} -gt 0 ]; then
+            echo "failed: ${failed[*]}"
+            exit 1
+          fi
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: packages
           path: out/
