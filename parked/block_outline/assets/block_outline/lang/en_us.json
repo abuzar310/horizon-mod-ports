@@ -1,0 +1,8 @@
+{
+  "block_outline.setting.color": "Colour",
+  "block_outline.setting.color.tooltip": "The outline's colour.",
+  "block_outline.setting.alpha": "Opacity",
+  "block_outline.setting.alpha.tooltip": "How solid the outline is: 1 is fully solid, lower lets the block show through.",
+  "block_outline.setting.thickness": "Thickness",
+  "block_outline.setting.thickness.tooltip": "How thick the outline's lines are, in pixels on the screen."
+}

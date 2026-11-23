@@ -156,7 +156,7 @@ ICONS = {
         *[(s, WHITE) for s in text_shapes("3", 88, 50, 2)],
         (rrect(14, 88, 114, 96, 3), hexc("#5a5f6b")),
     ],
-    "held_item_info": [
+    "held_item_details": [
         bg("#3b2a5c", "#1c1430"),
         (capsule(40, 86, 88, 38, 12), hexc("#d9dde3")),
         (capsule(44, 82, 86, 40, 4), hexc("#ffffff")),
@@ -165,7 +165,7 @@ ICONS = {
         (rrect(26, 104, 102, 114, 5), hexc("#14101f")),
         (rrect(28, 106, 78, 112, 3), hexc("#55e05a")),
     ],
-    "speedrun_timer": [
+    "speedrun_clock": [
         bg("#1f5a37", "#0d2817"),
         (rrect(56, 18, 72, 30, 3), WHITE),
         (capsule(84, 34, 92, 26, 6), WHITE),
@@ -190,7 +190,7 @@ ICONS = {
         (capsule(42, 48, 86, 48, 9), hexc("#1e3a6e")),
         (capsule(42, 66, 86, 66, 9), hexc("#1e3a6e")),
     ],
-    "rarity_borders": [
+    "rarity_slots": [
         bg("#33363d", "#16181c"),
         *[(rrect(14 + i * 34, 46, 46 + i * 34, 78, 3), hexc(c))
           for i, c in enumerate(["#ffff55", "#55ffff", "#ff55ff"])],
@@ -199,7 +199,7 @@ ICONS = {
         (poly([(64, 54), (70, 62), (64, 70), (58, 62)]), hexc("#55ffff")),
         (poly([(98, 54), (104, 62), (98, 70), (92, 62)]), hexc("#ff55ff")),
     ],
-    "toggle_sprint": [
+    "sprint_sneak_toggle": [
         bg("#2c3e50", "#141d26"),
         (capsule(30, 34, 44, 46, 7), WHITE),
         (capsule(44, 46, 30, 58, 7), WHITE),

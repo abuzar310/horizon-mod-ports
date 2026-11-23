@@ -1,0 +1,10 @@
+id = "rarity_slots"
+name = "Rarity Slots"
+version = "1.0.0"
+description = "A thin border in the colour of the item's rarity round inventory, container and hotbar slots holding uncommon, rare or epic items."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/rarity_slots"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

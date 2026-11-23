@@ -1,0 +1,7 @@
+X-Ray (single player)
+Copyright (c) 2026 abuzar310, MIT licensed (see LICENSE).
+
+This mod is a new WebAssembly rewrite, for Horizon's current mod SDK, of
+"X To Xray" by RealCat1st (https://github.com/RealCat1st/XToXrayRust),
+which is licensed under the Apache License, Version 2.0, and was made for
+Horizon's earlier mod system. No code from X To Xray was copied into this mod.

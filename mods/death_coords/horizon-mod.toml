@@ -1,0 +1,10 @@
+id = "death_coords"
+name = "Death Coordinates"
+version = "1.0.0"
+description = "Remembers where you last died, in each world and on each server: a line in chat when you die, and /lastdeath to see it again."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/death_coords"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

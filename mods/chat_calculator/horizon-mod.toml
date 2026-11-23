@@ -1,0 +1,10 @@
+id = "chat_calculator"
+name = "Chat Calculator"
+version = "1.0.0"
+description = "Type =2*64+5 in chat to see 2*64+5 = 133 (2 stacks + 5) on your own screen: a calculator that knows stacks (st), shulker boxes (sb) and double chests (dc), and never sends the sum."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/chat_calculator"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

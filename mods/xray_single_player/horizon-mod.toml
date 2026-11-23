@@ -1,0 +1,10 @@
+id = "xray_single_player"
+name = "X-Ray (single player)"
+version = "1.0.0"
+description = "Press X to see ores, chests, spawners, water and lava through stone and dirt, in single player only: it stays off on servers, and since a world opened to LAN looks like single player while you are alone in it, it turns itself off as soon as anyone else joins."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/xray_single_player"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

@@ -1,0 +1,4 @@
+{
+  "chat_calculator.setting.stacks": "Show stacks",
+  "chat_calculator.setting.stacks.tooltip": "Adds how many stacks of 64 a whole answer of 64 or more makes: 2*64+5 = 133 (2 stacks + 5)."
+}

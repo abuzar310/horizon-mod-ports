@@ -1,0 +1,8 @@
+{
+  "rarity_slots.setting.shown": "Shown",
+  "rarity_slots.setting.shown.tooltip": "Draws a border round each slot whose item is uncommon (yellow), rare (aqua) or epic (light purple), the colour its name has.",
+  "rarity_slots.setting.common": "Common items",
+  "rarity_slots.setting.common.tooltip": "Also draws a white border round slots holding common items.",
+  "rarity_slots.setting.hotbar": "Hotbar",
+  "rarity_slots.setting.hotbar.tooltip": "Also draws the borders on the hotbar while you play."
+}

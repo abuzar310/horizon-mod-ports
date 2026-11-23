@@ -13,7 +13,10 @@ registry's `archive/native-v1/`). Each folder credits the mod it follows and kee
 | --- | --- |
 | `mods/<id>/` | One mod: `horizon-mod.toml`, `Cargo.toml` (pinned SDK), `src/lib.rs`, `assets/`, `LICENSE`, `README.md` |
 | `ci/keystrokes/` | Horizon's official Keystrokes 3.0.1, unchanged ([source](https://github.com/horizon-rust/horizon-mods/tree/main/native/keystrokes), MIT): it must build, pass `cargo horizon-mod check` and its tests here, which proves this pipeline. Never released from here. |
-| `.github/workflows/build.yml` | Builds, checks and tests every mod; a tag `<id>-v<version>` publishes `<id>-<version>.hmod` as a release |
+| `.github/workflows/build.yml` | Builds, checks and tests every mod, and checks each package again with the registry's own checker (`horizon-mods/.github/horizon-rev`); a tag `<id>-v<version>` publishes `<id>-<version>.hmod` as a release |
+| `tools/icons.py` | Draws each mod's `icon.png` (128 x 128) from simple shapes, with no image library |
+| `tools/rename_mod.py` | Gives a mod a new id and name (an archived registry id belongs to its original owner) |
+| `parked/` | Mods that build but are not offered to the registry, and why |
 
 ## Build
 

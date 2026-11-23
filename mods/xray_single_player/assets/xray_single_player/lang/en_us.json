@@ -1,0 +1,6 @@
+{
+  "key.xray_single_player.toggle": "Toggle X-ray",
+  "xray_single_player.setting.remember": "Remember state",
+  "xray_single_player.setting.remember.tooltip": "Off: X-ray starts off in every world you open. On: if you left X-ray on, it turns back on in the next single-player world you open, until you quit the game. It never turns on on a server.",
+  "xray_single_player.message.single_player_only": "X-Ray works only in single player"
+}
