@@ -29,9 +29,14 @@ jobs:
       - name: SDK pins
         id: pins
         run: |
-          pins=$(sed -nE 's/^sdk = "([0-9a-f]{40})"$/\1/p' ci/*/Cargo.toml mods/*/Cargo.toml 2>/dev/null | sort -u | tr '\n' ' ')
-          echo "pins: $pins"
+          # The registry checks a submitted package with the tool from its own reviewed engine commit,
+          # which can be older than a mod's SDK: install that one too and run its check on every package.
+          registry=$(curl -fsSL https://raw.githubusercontent.com/horizon-rust/horizon-mods/main/.github/horizon-rev | tr -d '[:space:]')
+          [[ "$registry" =~ ^[0-9a-f]{40}$ ]] || { echo "registry rev unreadable: $registry"; exit 1; }
+          pins=$( (sed -nE 's/^sdk = "([0-9a-f]{40})"$/\1/p' ci/*/Cargo.toml mods/*/Cargo.toml 2>/dev/null; echo "$registry") | sort -u | tr '\n' ' ')
+          echo "pins: $pins (registry checker: $registry)"
           echo "pins=$pins" >> "$GITHUB_OUTPUT"
+          echo "registry=$registry" >> "$GITHUB_OUTPUT"
           echo "key=$(printf '%s' "$pins" | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
 
       - name: Restore the mod tools
@@ -66,6 +71,8 @@ jobs:
           key: horizon-mod-tools-v1-${{ steps.pins.outputs.key }}
 
       - name: Build, check and test
+        env:
+          REGISTRY: ${{ steps.pins.outputs.registry }}
         run: |
           set -uo pipefail
           mkdir -p out
@@ -92,12 +99,18 @@ jobs:
               failed+=("$id")
               continue
             fi
+            if ! PATH="$HOME/horizon-tools/$REGISTRY/bin:$PATH" cargo horizon-mod check "$dir/target/horizon-mod/$id.hmod" > "out/$id.registry-check.log" 2>&1; then
+              cat "out/$id.registry-check.log"
+              echo "::error title=$id::the registry's checker (horizon ${REGISTRY:0:10}) refuses this package (out/$id.registry-check.log)"
+              failed+=("$id")
+              continue
+            fi
             cp "$dir/target/horizon-mod/$id.hmod" "out/$id.hmod"
             cp "$dir/horizon-mod.toml" "out/$id.horizon-mod.toml"
             {
               echo "### $id ($dir)"
               echo '```'
-              echo "sha256 $(sha256sum "out/$id.hmod" | cut -d' ' -f1)  size $(stat -c %s "out/$id.hmod")"
+              echo "sha256 $(sha256sum "out/$id.hmod" | cut -d' ' -f1)  size $(stat -c %s "out/$id.hmod")  registry check ${REGISTRY:0:10}: passed"
               sed -n '/^\[wasm\]/,$p' "$dir/horizon-mod.toml"
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
