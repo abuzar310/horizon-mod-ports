@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/death_
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "e939fc343da6ab55580f6a21d8983df176d0e991c86f454d007a32063bcac19c32d49f86c0c63cfc929fae81e1d4e022fc5317847ab3c70d844be95c747e6d76"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

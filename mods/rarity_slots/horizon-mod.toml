@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/rarity
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "fa03c0673d2f97c75ecc4105a5c095c4a818b3e17db18b799291e26f58d4a85498a622648fa07be95a1b1bbce79a08b21d38dfe5dd8a7c6846bfeab7e72a24de"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

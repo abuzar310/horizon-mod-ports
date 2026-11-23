@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/chat_c
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "6b8fa091e3e071b45f559c7d811e89af87a87ae58bf172e51e632ea2cbed6a0e4b864bcae963abca7301468413cfd58887ea3250a95f3d5337a0ba54ec651113"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

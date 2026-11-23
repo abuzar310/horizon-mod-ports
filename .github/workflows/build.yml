@@ -74,7 +74,10 @@ jobs:
         env:
           REGISTRY: ${{ steps.pins.outputs.registry }}
         run: |
+          # Actions runs this step with `bash -e`: turn that off so one mod's failure is recorded
+          # and the others still build.
           set -uo pipefail
+          set +e
           mkdir -p out
           failed=()
           for dir in ci/*/ mods/*/; do

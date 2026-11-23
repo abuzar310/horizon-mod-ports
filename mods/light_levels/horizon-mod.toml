@@ -1,0 +1,10 @@
+id = "light_levels"
+name = "Light Levels"
+version = "1.0.0"
+description = "Press F7 to mark the blocks near you where hostile mobs can spawn: red where it is dark enough by day too, yellow where they spawn only at night, as crosses, squares or light numbers."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/light_levels"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

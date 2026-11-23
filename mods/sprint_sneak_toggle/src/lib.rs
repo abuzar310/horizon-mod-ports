@@ -65,7 +65,7 @@ impl Kind {
     /// The id of the mod's own key for it (its line in `horizon-mods.txt`).
     pub fn key_id(self) -> &'static str {
         match self {
-            Kind::Sprint => "sprint_sneak_toggle",
+            Kind::Sprint => "toggle_sprint",
             Kind::Sneak => "toggle_sneak",
         }
     }
@@ -73,7 +73,7 @@ impl Kind {
     /// The translation key of the key's name on Options > Controls.
     pub fn label(self) -> &'static str {
         match self {
-            Kind::Sprint => "key.sprint_sneak_toggle.sprint_sneak_toggle",
+            Kind::Sprint => "key.sprint_sneak_toggle.toggle_sprint",
             Kind::Sneak => "key.sprint_sneak_toggle.toggle_sneak",
         }
     }
@@ -358,7 +358,7 @@ impl Hooks for ToggleSprint {
             }
         };
         let options = view.input_options();
-        let toggle_options = [options.sprint_sneak_toggle, options.toggle_crouch];
+        let toggle_options = [options.toggle_sprint, options.toggle_crouch];
         let mut input = Input {
             mode,
             keys: [KeyRead::default(); 2],
@@ -521,9 +521,9 @@ mod tests {
     #[test]
     fn the_keys_are_v_and_c_with_ids_the_registrar_takes() {
         let keys = key_registrations();
-        assert_eq!(keys[0].id, "sprint_sneak_toggle");
+        assert_eq!(keys[0].id, "toggle_sprint");
         assert_eq!(keys[0].key, "key.keyboard.v");
-        assert_eq!(keys[0].label, "key.sprint_sneak_toggle.sprint_sneak_toggle");
+        assert_eq!(keys[0].label, "key.sprint_sneak_toggle.toggle_sprint");
         assert_eq!(keys[1].id, "toggle_sneak");
         assert_eq!(keys[1].key, "key.keyboard.c");
         assert_eq!(keys[1].label, "key.sprint_sneak_toggle.toggle_sneak");

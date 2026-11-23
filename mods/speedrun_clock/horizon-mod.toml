@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/speedr
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "1b4050810af16791f812b4c19b3e6e63825beca17701e5461cc540241233fffc6717eef212a5713aa5b16fb7d7dd908638e302486c842b4b22ddf0bf36eea671"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

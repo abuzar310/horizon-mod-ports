@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/hotbar
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "131bf0b5e4537125f3385fe3328d60f80b5de7e2c31d38e27ffd5e0b2fd322d533d2f0a33a055925ea24f0054af60975b818601e03780593595c07323a258a22"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

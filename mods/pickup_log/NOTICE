@@ -1,0 +1,13 @@
+Pickup Log
+Copyright (c) 2026 abuzar310, MIT licence (see LICENSE).
+
+Pickup Log is a new WebAssembly mod written for Horizon's current mod SDK. Its idea follows:
+
+- "Pick Up Notifier" by DeportedToHell, a port for Horizon's earlier mod system
+  (https://github.com/DeportedToHell/MCRE-Mods/tree/main/pickupnotifier, Mozilla Public License 2.0),
+  archived in the Horizon mod registry as archive/native-v1/mods/pickupnotifier.toml;
+- which ports Pick Up Notifier by Fuzs (https://github.com/Fuzss/pickupnotifier, Mozilla Public
+  License 2.0).
+
+No source code, assets or other files of either project are included in or copied into Pickup Log,
+so this notice is a credit only; it does not place Pickup Log under the MPL-2.0.

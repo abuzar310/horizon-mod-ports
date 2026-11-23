@@ -1,5 +1,5 @@
 {
-  "key.sprint_sneak_toggle.sprint_sneak_toggle": "Toggle sprint",
+  "key.sprint_sneak_toggle.toggle_sprint": "Toggle sprint",
   "key.sprint_sneak_toggle.toggle_sneak": "Toggle sneak",
   "sprint_sneak_toggle.setting.shown": "Status line",
   "sprint_sneak_toggle.setting.shown.tooltip": "Whether the line saying what you are doing ([Sprinting (Toggled)], [Flying]...) shows in its corner. It gives way to the debug screen (F3).",

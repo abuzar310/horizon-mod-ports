@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/held_i
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "1d43f361877c7a643e4d7bab6ab99abee779edc11bcf8b8d328ff35a928b2630d5c3b779949e3a3f2118afd0b77457adcc44f5dc2e148c75d760e1489cad2c14"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

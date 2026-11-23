@@ -2,7 +2,11 @@
 
 Moves mods/OLD_ID to mods/NEW_ID and its assets/OLD_ID namespace, then replaces the id (also as
 `mod-old-id` in Cargo.toml) and the display name in every text file, keeping the lines that point at
-the original archived project (`archive/native-v1/mods/OLD_ID.toml`). Prints each changed file."""
+the original archived project (`archive/native-v1/mods/OLD_ID.toml`). Prints each changed file.
+
+It replaces the id as plain text, so it also renames any SDK name that happens to contain it (renaming
+toggle_sprint once turned the SDK field `options.toggle_sprint` into `options.sprint_sneak_toggle`):
+read the diff of src/ before committing, and let CI build it."""
 import os
 import sys
 
