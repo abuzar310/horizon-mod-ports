@@ -8,3 +8,7 @@ homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/speedo
 api = "0.2"
 side = "client"
 capabilities = ["registries"]
+
+[wasm]
+sha512 = "e3d4a7e50247ac569e70255c289c9b83de19e14bb9c9f19055726d66477664f9272e3a482790608a2a5bc04e64226ec177aa662391c63df474acc15ce4eec4d3"
+toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"
