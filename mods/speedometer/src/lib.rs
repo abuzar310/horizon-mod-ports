@@ -57,10 +57,22 @@ pub struct Sample {
     pub pos: [f64; 3],
 }
 
+/// The most samples kept: a window holds about 21 client ticks, so the buffer, reserved once,
+/// never grows while the player plays.
+pub const CAPACITY: usize = 64;
+
 /// The samples of the last [`WINDOW_MS`], oldest first.
-#[derive(Debug, Default)]
+#[derive(Debug)]
 pub struct Track {
     samples: VecDeque<Sample>,
+}
+
+impl Default for Track {
+    fn default() -> Self {
+        Self {
+            samples: VecDeque::with_capacity(CAPACITY),
+        }
+    }
 }
 
 impl Track {
@@ -71,6 +83,9 @@ impl Track {
             && (sample.at < last.at || distance(last.pos, sample.pos, true) > JUMP)
         {
             self.samples.clear();
+        }
+        if self.samples.len() == CAPACITY {
+            self.samples.pop_front();
         }
         self.samples.push_back(sample);
         // Keep one sample at least a window old, so the speed always spans a whole window.
@@ -112,12 +127,29 @@ pub fn distance(a: [f64; 3], b: [f64; 3], vertical: bool) -> f64 {
     (dx * dx + dy * dy + dz * dz).sqrt()
 }
 
-/// The line the panel shows: `4.3 blocks/s` or `15.5 km/h` (option 1).
+/// The speed in tenths of the unit shown: blocks per second (option 0) or km/h (option 1). The
+/// panel's text changes only when this does.
+pub fn tenths(blocks_per_second: f64, unit: usize) -> u64 {
+    let shown = match unit {
+        1 => blocks_per_second * 3.6,
+        _ => blocks_per_second,
+    };
+    (shown.max(0.0) * 10.0).round() as u64
+}
+
+/// Writes the line the panel shows into `out`: `4.3 blocks/s` or `15.5 km/h`.
+pub fn write_line(out: &mut String, tenths: u64, unit: usize) {
+    use std::fmt::Write;
+    out.clear();
+    let name = if unit == 1 { "km/h" } else { "blocks/s" };
+    let _ = write!(out, "{}.{} {name}", tenths / 10, tenths % 10);
+}
+
+/// The line the panel shows for a speed in blocks per second.
 pub fn line(blocks_per_second: f64, unit: usize) -> String {
-    match unit {
-        1 => format!("{:.1} km/h", blocks_per_second * 3.6),
-        _ => format!("{:.1} blocks/s", blocks_per_second),
-    }
+    let mut out = String::new();
+    write_line(&mut out, tenths(blocks_per_second, unit), unit);
+    out
 }
 
 /// The panel around a line `width` GUI pixels wide: `[w, h]`.
@@ -125,14 +157,37 @@ pub fn size(width: f32) -> [f32; 2] {
     [width + 2.0 * PADDING, LINE + PADDING]
 }
 
+/// The panel's text, built and measured again only when the speed shown changes, so a frame
+/// allocates nothing.
+struct Label {
+    key: Option<(u64, usize)>,
+    text: String,
+    width: f32,
+}
+
+impl Default for Label {
+    fn default() -> Self {
+        Self {
+            key: None,
+            text: String::with_capacity(32),
+            width: 0.0,
+        }
+    }
+}
+
 #[derive(Default)]
 struct Speedometer {
     track: Mutex<Track>,
+    label: Mutex<Label>,
 }
 
 impl Speedometer {
     fn track(&self) -> std::sync::MutexGuard<'_, Track> {
         self.track.lock().unwrap_or_else(|e| e.into_inner())
+    }
+
+    fn label(&self) -> std::sync::MutexGuard<'_, Label> {
+        self.label.lock().unwrap_or_else(|e| e.into_inner())
     }
 }
 
@@ -175,12 +230,18 @@ impl Hooks for Speedometer {
         }
         let vertical = host.setting_bool("vertical").unwrap_or(false);
         let unit = host.setting_choice("unit").map_or(0, |i| i as usize);
-        let text = line(self.track().speed(vertical), unit);
+        let key = (tenths(self.track().speed(vertical), unit), unit);
         let draw = &mut *event.draw;
-        let [w, h] = size(draw.text_width(&text));
+        let mut label = self.label();
+        if label.key != Some(key) {
+            write_line(&mut label.text, key.0, key.1);
+            label.width = draw.text_width(&label.text);
+            label.key = Some(key);
+        }
+        let [w, h] = size(label.width);
         let (x, y) = event.corners.place(corner, w, h);
         draw.fill([x, y, w, h], BACKGROUND);
-        draw.text(&text, [x + PADDING, y + PADDING], INK, true);
+        draw.text(&label.text, [x + PADDING, y + PADDING], INK, true);
     }
 }
 
@@ -268,5 +329,36 @@ mod tests {
     fn the_panel_fits_its_line() {
         assert_eq!(size(60.0), [64.0, 12.0]);
         assert_eq!(CORNERS[3], Corner::BottomRight);
+    }
+
+    /// The game stops a mod whose hook runs past its time budget: the buffer reserved at the
+    /// start never grows, however many samples a window gets.
+    #[test]
+    fn the_sample_buffer_never_grows() {
+        let mut track = Track::default();
+        let reserved = track.samples.capacity();
+        assert!(reserved >= CAPACITY);
+        for i in 0..1000u64 {
+            track.push(at(i, i as f64 * 0.001, 64.0, 0.0));
+        }
+        assert_eq!(track.samples.capacity(), reserved);
+        assert!(track.samples.len() <= CAPACITY);
+    }
+
+    #[test]
+    fn the_line_is_written_into_the_same_buffer() {
+        let mut out = String::with_capacity(32);
+        let reserved = out.capacity();
+        write_line(&mut out, 56, 0);
+        assert_eq!(out, "5.6 blocks/s");
+        write_line(&mut out, 1234, 1);
+        assert_eq!(out, "123.4 km/h");
+        write_line(&mut out, 0, 0);
+        assert_eq!(out, "0.0 blocks/s");
+        assert_eq!(out.capacity(), reserved);
+        assert_eq!(tenths(5.6, 1), 202);
+        assert_eq!(tenths(-0.01, 0), 0);
+        assert_eq!(tenths(0.04, 0), 0);
+        assert_eq!(tenths(0.05, 0), 1);
     }
 }
