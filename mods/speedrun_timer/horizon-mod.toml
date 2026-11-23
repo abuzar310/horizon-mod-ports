@@ -1,0 +1,10 @@
+id = "speedrun_timer"
+name = "Speedrun Timer"
+version = "1.0.0"
+description = "A real-time speedrun timer in a corner of the screen: it starts on your first move, stops when the end credits roll, and keeps your personal best."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/speedrun_timer"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

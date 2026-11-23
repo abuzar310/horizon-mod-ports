@@ -1,0 +1,12 @@
+{
+  "hotbar_numbers.setting.shown": "Shown",
+  "hotbar_numbers.setting.shown.tooltip": "Whether each hotbar slot shows the key that selects it. Nothing shows in spectator mode or while the HUD is hidden (F1).",
+  "hotbar_numbers.setting.only_rebound": "Only rebound keys",
+  "hotbar_numbers.setting.only_rebound.tooltip": "Off: every slot shows its key. On: a slot shows its key only when it is not the usual 1 to 9.",
+  "hotbar_numbers.setting.corner": "Corner",
+  "hotbar_numbers.setting.corner.tooltip": "Where in the slot the key shows. Bottom right is where a stack's count is drawn, so it covers the count.",
+  "hotbar_numbers.corner.top_left": "Top left",
+  "hotbar_numbers.corner.bottom_right": "Bottom right",
+  "hotbar_numbers.setting.color": "Colour",
+  "hotbar_numbers.setting.color.tooltip": "The colour of the key names. They always have a shadow."
+}

@@ -1,0 +1,10 @@
+id = "hotbar_numbers"
+name = "Hotbar Numbers"
+version = "1.0.0"
+description = "The key each hotbar slot is bound to, drawn small in a corner of the slot, so rebound hotbar keys are easy to remember."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/hotbar_numbers"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

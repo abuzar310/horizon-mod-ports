@@ -1,0 +1,12 @@
+{
+  "held_item_info.setting.shown": "Shown",
+  "held_item_info.setting.shown.tooltip": "Whether the lines about the item in your hand show above the hotbar.",
+  "held_item_info.setting.durability": "Durability",
+  "held_item_info.setting.durability.tooltip": "How much durability a tool, weapon or piece of armour has left, out of its most. Yellow under a quarter, red under a tenth.",
+  "held_item_info.setting.count": "Count",
+  "held_item_info.setting.count.tooltip": "How many items the stack in your hand holds, and how many of the same your whole inventory holds when that is more.",
+  "held_item_info.setting.enchantments": "Enchantments",
+  "held_item_info.setting.enchantments.tooltip": "Up to six of the item's enchantments with their levels, an enchanted book's too, cut to fit the screen.",
+  "held_item_info.durability": "Durability",
+  "held_item_info.in_inventory": "in inventory"
+}

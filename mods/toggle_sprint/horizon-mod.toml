@@ -1,0 +1,10 @@
+id = "toggle_sprint"
+name = "Toggle Sprint"
+version = "1.0.0"
+description = "Press V to keep sprinting and C to keep sneaking instead of holding the keys, with a small [Sprinting (Toggled)] status line in a corner."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/toggle_sprint"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

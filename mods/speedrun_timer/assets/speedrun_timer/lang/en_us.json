@@ -1,0 +1,12 @@
+{
+  "speedrun_timer.setting.shown": "Shown",
+  "speedrun_timer.setting.shown.tooltip": "Whether the timer shows in its corner. It keeps counting while hidden, and gives way to the debug screen (F3).",
+  "speedrun_timer.setting.corner": "Corner",
+  "speedrun_timer.setting.corner.tooltip": "Where the timer shows.",
+  "speedrun_timer.corner.top_left": "Top left",
+  "speedrun_timer.corner.top_right": "Top right",
+  "speedrun_timer.corner.bottom_left": "Bottom left",
+  "speedrun_timer.corner.bottom_right": "Bottom right",
+  "speedrun_timer.setting.show_best": "Show personal best",
+  "speedrun_timer.setting.show_best.tooltip": "Your best finished run, in grey under the timer."
+}

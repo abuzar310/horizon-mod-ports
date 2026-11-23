@@ -1,0 +1,10 @@
+id = "held_item_info"
+name = "Held Item Info"
+version = "1.0.0"
+description = "Above the hotbar: how much durability the item in your hand has left, how many of it you carry, and its enchantments."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/held_item_info"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]

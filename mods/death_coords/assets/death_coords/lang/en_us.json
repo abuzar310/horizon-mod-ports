@@ -1,0 +1,4 @@
+{
+  "death_coords.setting.announce": "Announce in chat",
+  "death_coords.setting.announce.tooltip": "When you die, a line in chat says where: the block and the dimension. /lastdeath shows it again either way."
+}

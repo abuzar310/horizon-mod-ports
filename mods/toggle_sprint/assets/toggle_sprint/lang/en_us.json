@@ -1,0 +1,12 @@
+{
+  "key.toggle_sprint.toggle_sprint": "Toggle sprint",
+  "key.toggle_sprint.toggle_sneak": "Toggle sneak",
+  "toggle_sprint.setting.shown": "Status line",
+  "toggle_sprint.setting.shown.tooltip": "Whether the line saying what you are doing ([Sprinting (Toggled)], [Flying]...) shows in its corner. It gives way to the debug screen (F3).",
+  "toggle_sprint.setting.corner": "Corner",
+  "toggle_sprint.setting.corner.tooltip": "Where the status line shows.",
+  "toggle_sprint.corner.top_left": "Top left",
+  "toggle_sprint.corner.top_right": "Top right",
+  "toggle_sprint.corner.bottom_left": "Bottom left",
+  "toggle_sprint.corner.bottom_right": "Bottom right"
+}

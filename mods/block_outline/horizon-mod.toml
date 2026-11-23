@@ -1,0 +1,10 @@
+id = "block_outline"
+name = "Block Outline"
+version = "1.0.0"
+description = "Outlines the block you are looking at in your own colour, opacity and thickness instead of the thin black line."
+authors = ["abuzar310"]
+license = "MIT"
+homepage = "https://github.com/abuzar310/horizon-mod-ports/tree/main/mods/block_outline"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]
